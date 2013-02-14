@@ -2,11 +2,11 @@ package model;
 
 import model.node.Node;
 
-public class AritmeticExpression {
+public class SyntaxTree {
     
     private Node root;
 
-    public AritmeticExpression(Node root) {
+    public SyntaxTree(Node root) {
         this.root = root;
     }
 

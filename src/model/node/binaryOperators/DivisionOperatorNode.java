@@ -1,6 +1,7 @@
 package model.node.binaryOperators;
 
 import model.node.BinaryOperatorNode;
+import model.node.DivisionByZeroException;
 import model.node.Node;
 
 public class DivisionOperatorNode extends BinaryOperatorNode{
@@ -14,10 +15,4 @@ public class DivisionOperatorNode extends BinaryOperatorNode{
             throw new DivisionByZeroException();
         return firstOperand.evaluate()/secondOperand.evaluate();
    }    
-
-    public static class DivisionByZeroException extends RuntimeException {
-
-        public DivisionByZeroException() {
-        }
-    }
 }

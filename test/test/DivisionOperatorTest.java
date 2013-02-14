@@ -1,8 +1,8 @@
 package test;
 
 import model.node.ConstantNode;
+import model.node.DivisionByZeroException;
 import model.node.binaryOperators.DivisionOperatorNode;
-import model.node.binaryOperators.DivisionOperatorNode.DivisionByZeroException;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

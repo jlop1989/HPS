@@ -109,14 +109,14 @@ public class NumberCalculator extends Calculator {
     }
 
     public Object calculate(String operation, Object arg1, Object arg2) {
-        try {
-            Calculator calculator = new NumberCalculator();
-            Method m = calculator.getClass().getMethod(operation, new Class<?>[]{arg1.getClass(), arg2.getClass()});
-            return m.invoke(calculator, new Object[]{arg1, arg2});
-        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
-            Logger.getLogger(BinaryOperator.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DivisionByZeroException e){
-            throw new DivisionByZeroException();
+        try {        
+            Method m = this.getClass().getMethod(operation, new Class<?>[]{arg1.getClass(), arg2.getClass()});
+            return m.invoke(this, new Object[]{arg1, arg2});
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException ex) {
+            Logger.getLogger(NumberCalculator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            if( ex.getTargetException() instanceof DivisionByZeroException)
+                throw new DivisionByZeroException();
         }
         return null;
     }

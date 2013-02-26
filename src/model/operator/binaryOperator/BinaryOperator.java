@@ -1,5 +1,6 @@
 package model.operator.binaryOperator;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
@@ -32,27 +33,34 @@ public class BinaryOperator extends Operator {
     public Object evaluate() {
         Object leftOperand = left.evaluate();
         Object rightOperand = right.evaluate();
-        Object[] args = {leftOperand, rightOperand};
-        Class<?>[] parameterTypes = {leftOperand.getClass(), rightOperand.getClass()};
-        if ((leftOperand instanceof Double || leftOperand instanceof Integer)
-                && (rightOperand instanceof Double || rightOperand instanceof Integer)) {
-            try {
-                Calculator calculator = new NumberCalculator();
-                Method m = calculator.getClass().getMethod(name, parameterTypes);
-                return m.invoke(calculator, args);
-            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
-                Logger.getLogger(BinaryOperator.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (isNumericOperation(leftOperand, rightOperand)) {
+            return new NumberCalculator().calculate(name, leftOperand, rightOperand);
         }
-        if (leftOperand instanceof Boolean && rightOperand instanceof Boolean) {
-            try {
-                Calculator calculator = new BooleanCalculator();
-                Method m = calculator.getClass().getMethod(name, parameterTypes);
-                return m.invoke(calculator, args);
-            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
-                Logger.getLogger(BinaryOperator.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
+        if (isBooleanOperation(leftOperand, rightOperand)) {
+            return calculate(name,leftOperand, rightOperand);
+
+        }
+        return null;
+    }
+
+    private boolean isNumericOperation(Object o1, Object o2) {
+        return ((o1 instanceof Double || o2 instanceof Integer)
+                && (o1 instanceof Double || o2 instanceof Integer));
+
+    }
+
+    private boolean isBooleanOperation(Object o1, Object o2) {
+        return o1 instanceof Boolean && o2 instanceof Boolean;
+    }
+
+    private Object calculate(String name,Object leftOperand, Object rightOperand) {
+        try {
+            Calculator calculator = new BooleanCalculator();
+            Method m = calculator.getClass().getMethod(name, new Class<?>[]{leftOperand.getClass(), rightOperand.getClass()});
+            return m.invoke(calculator, new Object[]{leftOperand, rightOperand});
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
+             
         }
         return null;
     }

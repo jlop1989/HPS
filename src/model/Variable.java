@@ -23,7 +23,7 @@ public class Variable extends Token {
     }
 
     @Override
-    public Object evaluate() {
-        return value.getVaue();
+    public Value evaluate() {
+        return value;
     }
 }

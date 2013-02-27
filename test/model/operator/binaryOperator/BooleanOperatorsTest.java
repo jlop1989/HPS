@@ -18,7 +18,7 @@ public class BooleanOperatorsTest {
         Constant c = new Constant(val3);
         BinaryOperator mult = new BinaryOperator(a, b, "mult");
         Token root = new BinaryOperator(c, mult, "less");
-        assertEquals(Boolean.TRUE, root.evaluate());
+        assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class BooleanOperatorsTest {
         Constant c = new Constant(val3);
         BinaryOperator mult = new BinaryOperator(a, b, "mult");
         Token root = new BinaryOperator(c, mult, "less");
-        assertEquals(Boolean.TRUE, root.evaluate());
+        assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class BooleanOperatorsTest {
         Constant c = new Constant(val3);
         BinaryOperator mult = new BinaryOperator(a, b, "mult");
         Token root = new BinaryOperator(c, mult, "less");
-        assertEquals(Boolean.TRUE, root.evaluate());
+        assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class BooleanOperatorsTest {
         Constant c = new Constant(val3);
         BinaryOperator mult = new BinaryOperator(a, b, "mult");
         Token root = new BinaryOperator(c, mult, "less");
-        assertEquals(Boolean.TRUE, root.evaluate());
+        assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
     @Test
@@ -67,6 +67,6 @@ public class BooleanOperatorsTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Token root = new BinaryOperator(a, b, "and");
-        assertEquals(Boolean.FALSE, root.evaluate());
+        assertEquals(Boolean.FALSE, root.evaluate().getValue());
     }
 }

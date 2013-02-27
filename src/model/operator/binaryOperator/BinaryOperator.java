@@ -1,6 +1,7 @@
 package model.operator.binaryOperator;
 
 import model.Token;
+import model.Value;
 import model.calculator.BooleanCalculator;
 import model.calculator.NumberCalculator;
 import model.operator.Operator;
@@ -24,13 +25,13 @@ public class BinaryOperator extends Operator {
     }
 
     @Override
-    public Object evaluate() {
-        Object leftOperand = left.evaluate();
-        Object rightOperand = right.evaluate();
+    public Value evaluate() {
+        Object leftOperand = left.evaluate().getValue();
+        Object rightOperand = right.evaluate().getValue();
         if (isNumericOperation(leftOperand, rightOperand)) 
-            return new NumberCalculator().calculate(name, leftOperand, rightOperand);
+            return new Value(new NumberCalculator().calculate(name, leftOperand, rightOperand));
         if (isBooleanOperation(leftOperand, rightOperand)) 
-            return new BooleanCalculator().calculate(name, leftOperand, rightOperand);
+            return new Value(new BooleanCalculator().calculate(name, leftOperand, rightOperand));
         return null;
     }
 

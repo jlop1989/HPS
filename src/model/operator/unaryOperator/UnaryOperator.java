@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Token;
+import model.Value;
 import model.calculator.BooleanCalculator;
 import model.calculator.Calculator;
 import model.calculator.NumberCalculator;
@@ -24,28 +25,22 @@ public class UnaryOperator extends Operator{
     }
 
     @Override
-    public Object evaluate() {
+    public Value evaluate() {
         Object op = operand.evaluate();
-        Object[] args = {op};
-        Class<?>[] parameterTypes = {op.getClass()};
-        if (op instanceof Double || op instanceof Integer){
-            try {
-                Calculator calculator = new NumberCalculator();
-                Method m = calculator.getClass().getMethod(name, parameterTypes);
-                return m.invoke(calculator, args);
-            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
-                Logger.getLogger(BinaryOperator.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (isNumericOperation(op)){
+            return new Value(new NumberCalculator().calculate(name, op));
         }
-        if(op instanceof Boolean){
-            try {
-                Calculator calculator = new BooleanCalculator();
-                Method m = calculator.getClass().getMethod(name, parameterTypes);
-                return m.invoke(calculator, args);
-            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
-                Logger.getLogger(BinaryOperator.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+        if(isBooleanOperation(op)){
+            return new Value(new BooleanCalculator().calculate(name, op)); 
         }
         return null;
+    }
+
+    private boolean isNumericOperation(Object op) {
+        return op instanceof Double || op instanceof Integer;
+    }
+
+    private boolean isBooleanOperation(Object op) {
+        return op instanceof Boolean;
     }
 }

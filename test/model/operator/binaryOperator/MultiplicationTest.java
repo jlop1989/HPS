@@ -15,7 +15,7 @@ public class MultiplicationTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Token root = new BinaryOperator(a, b, "mult");
-        assertEquals(200.0, root.evaluate());
+        assertEquals(200.0, root.evaluate().getValue());
     }
 
     @Test
@@ -25,7 +25,7 @@ public class MultiplicationTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Token root = new BinaryOperator(a, b, "mult");
-        assertEquals(200.0, root.evaluate());
+        assertEquals(200.0, root.evaluate().getValue());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class MultiplicationTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Token root = new BinaryOperator(a, b, "mult");
-        assertEquals(200.0, root.evaluate());
+        assertEquals(200.0, root.evaluate().getValue());
     }
 
     @Test
@@ -45,6 +45,6 @@ public class MultiplicationTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Token root = new BinaryOperator(a, b, "mult");
-        assertEquals(200, root.evaluate());
+        assertEquals(200, root.evaluate().getValue());
     }
 }

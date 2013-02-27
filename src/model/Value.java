@@ -8,11 +8,11 @@ public class Value<T> {
         this.value = value;
     }
 
-    public T getVaue() {
+    public T getValue() {
         return value;
     }
 
-    public void setVaue(T value) {
+    public void setValue(T value) {
         this.value = value;
     }
 }

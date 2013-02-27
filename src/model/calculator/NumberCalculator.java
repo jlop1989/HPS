@@ -120,4 +120,13 @@ public class NumberCalculator extends Calculator {
         }
         return null;
     }
+    
+     public Object calculate(String operation, Object arg) {
+        try {
+                Method m = this.getClass().getMethod(operation, new Class<?>[]{arg.getClass()});
+            return m.invoke(this, new Object[]{arg});
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
+        }
+        return null;
+    }
 }

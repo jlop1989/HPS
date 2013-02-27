@@ -17,7 +17,7 @@ public class UnaryOperatorTest {
         Value<Double> val = new Value<>(25.0);
         Constant a = new Constant(val);
         Token root = new UnaryOperator(a, "sqrt");
-        assertEquals(5.0, root.evaluate());
+        assertEquals(5.0, root.evaluate().getValue());
     }
 
     @Test
@@ -25,7 +25,7 @@ public class UnaryOperatorTest {
         Value<Integer> val = new Value<>(25);
         Constant a = new Constant(val);
         Token root = new UnaryOperator(a, "sqrt");
-        assertEquals(5.0, root.evaluate());
+        assertEquals(5.0, root.evaluate().getValue());
     }
 
     @Test
@@ -33,6 +33,6 @@ public class UnaryOperatorTest {
         Value<Boolean> val = new Value<>(Boolean.TRUE);
         Constant a = new Constant(val);
         Token root = new UnaryOperator(a, "not");
-        assertEquals(Boolean.FALSE, root.evaluate());
+        assertEquals(Boolean.FALSE, root.evaluate().getValue());
     }
 }

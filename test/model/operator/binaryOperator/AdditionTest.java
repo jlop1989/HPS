@@ -14,7 +14,7 @@ public class AdditionTest {
         Value<Double> val2 = new Value<>(20.0);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "add");
+        Token root = new BinaryOperation(a, b, "add");
         assertEquals(40.0, root.evaluate().getValue());
     }
 
@@ -24,7 +24,7 @@ public class AdditionTest {
         Value<Integer> val2 = new Value<>(20);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "add");
+        Token root = new BinaryOperation(a, b, "add");
         assertEquals(40.0, root.evaluate().getValue());
     }
 
@@ -34,7 +34,7 @@ public class AdditionTest {
         Value<Double> val2 = new Value<>(20.0);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "add");
+        Token root = new BinaryOperation(a, b, "add");
         assertEquals(40.0, root.evaluate().getValue());
     }
 
@@ -44,7 +44,7 @@ public class AdditionTest {
         Value<Integer> val2 = new Value<>(20);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "add");
+        Token root = new BinaryOperation(a, b, "add");
         assertEquals(40, root.evaluate().getValue());
     }
 }

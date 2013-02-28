@@ -10,12 +10,12 @@ import model.calculator.BooleanCalculator;
 import model.calculator.Calculator;
 import model.calculator.NumberCalculator;
 import model.operator.Operator;
-import model.operator.binaryOperator.BinaryOperator;
+import model.operator.binaryOperator.BinaryOperation;
 
-public class UnaryOperator extends Operator{
+public class UnaryOperation extends Operator{
     private Token operand;
 
-    public UnaryOperator(Token operand, String name) {
+    public UnaryOperation(Token operand, String name) {
         super(name);
         this.operand = operand;
     }

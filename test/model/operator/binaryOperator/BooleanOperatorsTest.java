@@ -16,8 +16,8 @@ public class BooleanOperatorsTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Constant c = new Constant(val3);
-        BinaryOperator mult = new BinaryOperator(a, b, "mult");
-        Token root = new BinaryOperator(c, mult, "less");
+        BinaryOperation mult = new BinaryOperation(a, b, "mult");
+        Token root = new BinaryOperation(c, mult, "less");
         assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
@@ -29,8 +29,8 @@ public class BooleanOperatorsTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Constant c = new Constant(val3);
-        BinaryOperator mult = new BinaryOperator(a, b, "mult");
-        Token root = new BinaryOperator(c, mult, "less");
+        BinaryOperation mult = new BinaryOperation(a, b, "mult");
+        Token root = new BinaryOperation(c, mult, "less");
         assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
@@ -42,8 +42,8 @@ public class BooleanOperatorsTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Constant c = new Constant(val3);
-        BinaryOperator mult = new BinaryOperator(a, b, "mult");
-        Token root = new BinaryOperator(c, mult, "less");
+        BinaryOperation mult = new BinaryOperation(a, b, "mult");
+        Token root = new BinaryOperation(c, mult, "less");
         assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
@@ -55,8 +55,8 @@ public class BooleanOperatorsTest {
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
         Constant c = new Constant(val3);
-        BinaryOperator mult = new BinaryOperator(a, b, "mult");
-        Token root = new BinaryOperator(c, mult, "less");
+        BinaryOperation mult = new BinaryOperation(a, b, "mult");
+        Token root = new BinaryOperation(c, mult, "less");
         assertEquals(Boolean.TRUE, root.evaluate().getValue());
     }
 
@@ -66,7 +66,7 @@ public class BooleanOperatorsTest {
         Value<Boolean> val2 = new Value<>(Boolean.FALSE);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "and");
+        Token root = new BinaryOperation(a, b, "and");
         assertEquals(Boolean.FALSE, root.evaluate().getValue());
     }
 }

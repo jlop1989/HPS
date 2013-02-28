@@ -15,7 +15,7 @@ public class DivisionTest {
         Value<Double> val2 = new Value<>(10.0);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "div");
+        Token root = new BinaryOperation(a, b, "div");
         assertEquals(2.0, root.evaluate().getValue());
     }
 
@@ -25,7 +25,7 @@ public class DivisionTest {
         Value<Integer> val2 = new Value<>(10);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "div");
+        Token root = new BinaryOperation(a, b, "div");
         assertEquals(2.0, root.evaluate().getValue());
     }
 
@@ -35,7 +35,7 @@ public class DivisionTest {
         Value<Double> val2 = new Value<>(10.0);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "div");
+        Token root = new BinaryOperation(a, b, "div");
         assertEquals(2.0, root.evaluate().getValue());
     }
 
@@ -45,7 +45,7 @@ public class DivisionTest {
         Value<Integer> val2 = new Value<>(10);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "div");
+        Token root = new BinaryOperation(a, b, "div");
         assertEquals(2, root.evaluate().getValue());
     }
     
@@ -55,7 +55,7 @@ public class DivisionTest {
         Value<Integer> val2 = new Value<>(0);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "div");
+        Token root = new BinaryOperation(a, b, "div");
         try{
             assertEquals(null, root.evaluate().getValue());
             fail("Division By Zero");

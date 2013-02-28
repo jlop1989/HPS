@@ -14,7 +14,7 @@ public class SubstractionTest {
         Value<Double> val2 = new Value<>(10.0);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "sub");
+        Token root = new BinaryOperation(a, b, "sub");
         assertEquals(10.0, root.evaluate().getValue());
     }
 
@@ -24,7 +24,7 @@ public class SubstractionTest {
         Value<Integer> val2 = new Value<>(10);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "sub");
+        Token root = new BinaryOperation(a, b, "sub");
         assertEquals(10.0, root.evaluate().getValue());
     }
 
@@ -34,7 +34,7 @@ public class SubstractionTest {
         Value<Double> val2 = new Value<>(10.0);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "sub");
+        Token root = new BinaryOperation(a, b, "sub");
         assertEquals(10.0, root.evaluate().getValue());
     }
 
@@ -44,7 +44,7 @@ public class SubstractionTest {
         Value<Integer> val2 = new Value<>(10);
         Constant a = new Constant(val);
         Constant b = new Constant(val2);
-        Token root = new BinaryOperator(a, b, "sub");
+        Token root = new BinaryOperation(a, b, "sub");
         assertEquals(10, root.evaluate().getValue());
     }
 }

@@ -17,17 +17,6 @@ public class CalculatorEvaluator implements Evaluator {
 
     @Override
     public Object evaluate(Operator operator, Object[] args) {
-        
-        //Reflections reflections = new Reflections("");
-        
-//        Reflections reflections;
-//        ConfigurationBuilder c = new ConfigurationBuilder().addUrls(ClasspathHelper.forPackage("model.calculator.calculators"));
-//        reflections = new Reflections(c);
-//
-//
-//        Set<Class<? extends Calculator>> subTypes = 
-//               reflections.getSubTypesOf(Calculator.class);
-
         if (operator.isBinary()) {
             if (isNumericOperation(args[0], args[1])) {
                 try {

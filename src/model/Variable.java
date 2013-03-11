@@ -1,11 +1,11 @@
 package model;
 
-public class Variable extends Token {
+public class Variable<T> extends Token {
 
     private String name;
-    private Value value;
+    private T value;
 
-    public Variable(String name, Value value) {
+    public Variable(String name, T value) {
         this.name = name;
         this.value = value;
     }
@@ -14,16 +14,16 @@ public class Variable extends Token {
         return name;
     }
 
-    public Value getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(Value value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
     @Override
-    public Value evaluate() {
+    public Object evaluate() {
         return value;
     }
 }

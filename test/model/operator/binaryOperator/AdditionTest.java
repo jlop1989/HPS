@@ -1,8 +1,8 @@
 package model.operator.binaryOperator;
 
 import model.Constant;
-import model.Token;
-import model.Value;
+import model.evaluator.CalculatorEvaluator;
+import model.operator.Operator;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -10,41 +10,33 @@ public class AdditionTest {
 
     @Test
     public void AddDoubleDouble() {
-        Value<Double> val = new Value<>(20.0);
-        Value<Double> val2 = new Value<>(20.0);
-        Constant a = new Constant(val);
-        Constant b = new Constant(val2);
-        Token root = new BinaryOperation(a, b, "add");
-        assertEquals(40.0, root.evaluate().getValue());
+        Constant a = new Constant(new Double(20));
+        Constant b = new Constant(new Double(20));
+        BinaryOperation root = new BinaryOperation(a, b, Operator.get("+"),new CalculatorEvaluator());
+        assertEquals(40.0, root.evaluate());
     }
 
     @Test
     public void AddDoubleInteger() {
-        Value<Double> val = new Value<>(20.0);
-        Value<Integer> val2 = new Value<>(20);
-        Constant a = new Constant(val);
-        Constant b = new Constant(val2);
-        Token root = new BinaryOperation(a, b, "add");
-        assertEquals(40.0, root.evaluate().getValue());
+        Constant a = new Constant(new Double(20));
+        Constant b = new Constant(new Integer(20));
+        BinaryOperation root = new BinaryOperation(a, b, Operator.get("+"),new CalculatorEvaluator());
+        assertEquals(40.0, root.evaluate());
     }
 
     @Test
     public void AddIntegerDouble() {
-        Value<Integer> val = new Value<>(20);
-        Value<Double> val2 = new Value<>(20.0);
-        Constant a = new Constant(val);
-        Constant b = new Constant(val2);
-        Token root = new BinaryOperation(a, b, "add");
-        assertEquals(40.0, root.evaluate().getValue());
+        Constant a = new Constant(new Integer(20));
+        Constant b = new Constant(new Double(20));
+        BinaryOperation root = new BinaryOperation(a, b, Operator.get("+"),new CalculatorEvaluator());
+        assertEquals(40.0, root.evaluate());
     }
 
     @Test
     public void AddIntegerInteger() {
-        Value<Integer> val = new Value<>(20);
-        Value<Integer> val2 = new Value<>(20);
-        Constant a = new Constant(val);
-        Constant b = new Constant(val2);
-        Token root = new BinaryOperation(a, b, "add");
-        assertEquals(40, root.evaluate().getValue());
+        Constant a = new Constant(new Integer(20));
+        Constant b = new Constant(new Integer(20));
+        BinaryOperation root = new BinaryOperation(a, b, Operator.get("+"),new CalculatorEvaluator());
+        assertEquals(40, root.evaluate());
     }
 }

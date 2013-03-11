@@ -1,17 +1,16 @@
 package model.operator.binaryOperator;
 
 import model.Token;
-import model.Value;
-import model.calculator.BooleanCalculator;
-import model.calculator.NumberCalculator;
+import model.evaluator.Evaluator;
+import model.operator.Operation;
 import model.operator.Operator;
 
-public class BinaryOperation extends Operator {
+public class BinaryOperation extends Operation {
 
     private Token left, right;
 
-    public BinaryOperation(Token left, Token right, String name) {
-        super(name);
+    public BinaryOperation(Token left, Token right, Operator operator, Evaluator evaluator) {
+        super(operator, evaluator);
         this.left = left;
         this.right = right;
     }
@@ -25,22 +24,10 @@ public class BinaryOperation extends Operator {
     }
 
     @Override
-    public Value evaluate() {
-        Object leftOperand = left.evaluate().getValue();
-        Object rightOperand = right.evaluate().getValue();
-        if (isNumericOperation(leftOperand, rightOperand)) 
-            return new Value(new NumberCalculator().calculate(name, leftOperand, rightOperand));
-        if (isBooleanOperation(leftOperand, rightOperand)) 
-            return new Value(new BooleanCalculator().calculate(name, leftOperand, rightOperand));
-        return null;
+    public Object evaluate() {
+        Object leftOperand = left.evaluate();
+        Object rightOperand = right.evaluate();
+        return evaluator.evaluate(operator,new Object[]{leftOperand,rightOperand});
     }
 
-    private boolean isNumericOperation(Object o1, Object o2) {
-        return ((o1 instanceof Double || o1 instanceof Integer)
-                && (o2 instanceof Double || o2 instanceof Integer));
-    }
-
-    private boolean isBooleanOperation(Object o1, Object o2) {
-        return o1 instanceof Boolean && o2 instanceof Boolean;
-    }
 }

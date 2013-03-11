@@ -1,22 +1,15 @@
 package model.operator.unaryOperator;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Token;
-import model.Value;
-import model.calculator.BooleanCalculator;
-import model.calculator.Calculator;
-import model.calculator.NumberCalculator;
+import model.evaluator.Evaluator;
+import model.operator.Operation;
 import model.operator.Operator;
-import model.operator.binaryOperator.BinaryOperation;
 
-public class UnaryOperation extends Operator{
+public class UnaryOperation extends Operation{
     private Token operand;
 
-    public UnaryOperation(Token operand, String name) {
-        super(name);
+    public UnaryOperation(Token operand, Operator operator, Evaluator evaluator) {
+        super(operator, evaluator);
         this.operand = operand;
     }
 
@@ -25,14 +18,7 @@ public class UnaryOperation extends Operator{
     }
 
     @Override
-    public Value evaluate() {
-        Object op = operand.evaluate();
-        if (isNumericOperation(op)){
-            return new Value(new NumberCalculator().calculate(name, op));
-        }
-        if(isBooleanOperation(op)){
-            return new Value(new BooleanCalculator().calculate(name, op)); 
-        }
+    public Object evaluate() {
         return null;
     }
 

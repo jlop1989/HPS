@@ -1,7 +1,8 @@
-package model.calculator;
+package model.calculator.calculators;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import model.calculator.Calculator;
 
 public class BooleanCalculator extends Calculator {
 

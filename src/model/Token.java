@@ -2,5 +2,5 @@ package model;
 
 public abstract class Token {
 
-    public abstract Value evaluate();
+    public abstract Object evaluate();
 }

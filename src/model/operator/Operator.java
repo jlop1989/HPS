@@ -1,12 +1,45 @@
+
 package model.operator;
 
-import model.Token;
+import java.util.HashMap;
 
-public abstract class Operator extends Token {
-
-    protected String name;
-
-    public Operator(String name) {
-        this.name = name;
+public class Operator {
+    private String symbol;
+    private OperatorType type;
+    private PrecedenceType precedence;
+    private static final HashMap<String,Operator> operatorMap;
+    static{
+        operatorMap= new HashMap<>();
+        operatorMap.put("+", new Operator("+",OperatorType.BINARY,PrecedenceType.LOW));
+        operatorMap.put("-", new Operator("-",OperatorType.BINARY,PrecedenceType.LOW));
+        operatorMap.put("*", new Operator("*",OperatorType.BINARY,PrecedenceType.LOW));
+        operatorMap.put("/", new Operator("/",OperatorType.BINARY,PrecedenceType.LOW));
     }
+
+    public Operator(String symbol, OperatorType type, PrecedenceType precedence) {
+        this.symbol = symbol;
+        this.type = type;
+        this.precedence = precedence;
+    }
+ 
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public OperatorType getType() {
+        return type;
+    }
+
+    public PrecedenceType getPrecedence() {
+        return precedence;
+    }
+    
+    public boolean isBinary(){
+        return type == OperatorType.BINARY;
+    }
+ 
+    public static Operator get(String symbol){
+        return operatorMap.get(symbol);
+    }
+
 }

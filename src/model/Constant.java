@@ -1,19 +1,19 @@
 package model;
 
-public class Constant extends Token {
+public class Constant<T> extends Token {
 
-    private Value value;
+    private T value;
 
-    public Constant(Value value) {
+    public Constant(T value) {
         this.value = value;
     }
 
-    public Value getValue() {
+    public T getValue() {
         return value;
     }
 
     @Override
-    public Value evaluate() {
+    public Object evaluate() {
         return value;
     }
 }

@@ -42,4 +42,8 @@ public class Operator {
         return operatorMap.get(symbol);
     }
 
+    public boolean isMajorPrecedence(Operator operator) {
+        return (this.precedence==PrecedenceType.LOW && operator.precedence==PrecedenceType.HIGH);
+    }
+
 }

@@ -29,4 +29,9 @@ public class UnaryOperation extends Operation{
     private boolean isBooleanOperation(Object op) {
         return op instanceof Boolean;
     }
+
+    @Override
+    public String toString() {
+        return operand.toString()+operator.getSymbol();
+    }
 }

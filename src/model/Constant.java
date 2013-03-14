@@ -16,4 +16,9 @@ public class Constant<T> extends Token {
     public Object evaluate() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return evaluate().toString();
+    }
 }

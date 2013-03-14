@@ -30,4 +30,9 @@ public class BinaryOperation extends Operation {
         return evaluator.evaluate(operator,new Object[]{leftOperand,rightOperand});
     }
 
+    @Override
+    public String toString() {
+        return left.toString()+operator.getSymbol()+right.toString();
+    }
+
 }

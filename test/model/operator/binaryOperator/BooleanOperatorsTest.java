@@ -1,95 +1,85 @@
 package model.operator.binaryOperator;
 
 import model.Constant;
-import model.Token;
-import static org.junit.Assert.*;
+import model.Variable;
+import model.evaluator.CalculatorEvaluator;
+import model.operator.Operator;
+import model.operator.unaryOperator.UnaryOperation;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class BooleanOperatorsTest {
-//
-//    @Test
-//    public void LessDoubleDouble() {
-//        Value<Double> val = new Value<>(20.0);
-//        Value<Double> val2 = new Value<>(10.0);
-//        Value<Double> val3 = new Value<>(100.0);
-//        Constant a = new Constant(val);
-//        Constant b = new Constant(val2);
-//        Constant c = new Constant(val3);
-//        BinaryOperation mult = new BinaryOperation(a, b, "mult");
-//        Token root = new BinaryOperation(c, mult, "less");
-//        assertEquals(Boolean.TRUE, root.evaluate().getValue());
-//    }
-//
-//    @Test
-//    public void LessDoubleInteger() {
-//        Value<Double> val = new Value<>(20.0);
-//        Value<Integer> val2 = new Value<>(10);
-//        Value<Double> val3 = new Value<>(100.0);
-//        Constant a = new Constant(val);
-//        Constant b = new Constant(val2);
-//        Constant c = new Constant(val3);
-//        BinaryOperation mult = new BinaryOperation(a, b, "mult");
-//        Token root = new BinaryOperation(c, mult, "less");
-//        assertEquals(Boolean.TRUE, root.evaluate().getValue());
-//    @Test
-//    public void LessDoubleDouble() {
-//        Value<Double> val = new Value<>(20.0);
-//        Value<Double> val2 = new Value<>(10.0);
-//        Value<Double> val3 = new Value<>(100.0);
-//        Constant a = new Constant(val);
-//        Constant b = new Constant(val2);
-//        Constant c = new Constant(val3);
-//        BinaryOperation mult = new BinaryOperation(a, b, "mult");
-//        Token root = new BinaryOperation(c, mult, "less");
-//        assertEquals(Boolean.TRUE, root.evaluate().getValue());
-//    }
-//
-//    @Test
-//    public void LessDoubleInteger() {
-//        Value<Double> val = new Value<>(20.0);
-//        Value<Integer> val2 = new Value<>(10);
-//        Value<Double> val3 = new Value<>(100.0);
-//        Constant a = new Constant(val);
-//        Constant b = new Constant(val2);
-//        Constant c = new Constant(val3);
-//        BinaryOperation mult = new BinaryOperation(a, b, "mult");
-//        Token root = new BinaryOperation(c, mult, "less");
-//        assertEquals(Boolean.TRUE, root.evaluate().getValue());
-//    }
-//
-//    @Test
-//    public void LessIntegerDouble() {
-//        Value<Integer> val = new Value<>(20);
-//        Value<Double> val2 = new Value<>(10.0);
-//        Value<Integer> val3 = new Value<>(100);
-//        Constant a = new Constant(val);
-//        Constant b = new Constant(val2);
-//        Constant c = new Constant(val3);
-//        BinaryOperation mult = new BinaryOperation(a, b, "mult");
-//        Token root = new BinaryOperation(c, mult, "less");
-//        assertEquals(Boolean.TRUE, root.evaluate().getValue());
-//    }
-//
-//    @Test
-//    public void LessIntegerInteger() {
-//        Value<Integer> val = new Value<>(20);
-//        Value<Integer> val2 = new Value<>(10);
-//        Value<Integer> val3 = new Value<>(100);
-//        Constant a = new Constant(val);
-//        Constant b = new Constant(val2);
-//        Constant c = new Constant(val3);
-//        BinaryOperation mult = new BinaryOperation(a, b, "mult");
-//        Token root = new BinaryOperation(c, mult, "less");
-//        assertEquals(Boolean.TRUE, root.evaluate().getValue());
-//    }
-//
-//    @Test
-//    public void And() {
-//        Value<Boolean> val = new Value<>(Boolean.TRUE);
-//        Value<Boolean> val2 = new Value<>(Boolean.FALSE);
-//        Constant a = new Constant(val);
-//        Constant b = new Constant(val2);
-//        Token root = new BinaryOperation(a, b, "and");
-//        assertEquals(Boolean.FALSE, root.evaluate().getValue());
-//    }
+
+    @Test
+    public void AndFalseFalse() {
+        Constant constant1 = new Constant(false);
+        Constant constant2 = new Constant(false);
+        BinaryOperation and = new BinaryOperation(constant1, constant2, Operator.get("&&"), new CalculatorEvaluator());
+        assertEquals(false, and.evaluate());
+    }
+    
+    @Test
+    public void AndFalseTrue() {
+        Constant constant1 = new Constant(false);
+        Constant constant2 = new Constant(true);
+        BinaryOperation and = new BinaryOperation(constant1, constant2, Operator.get("&&"), new CalculatorEvaluator());
+        assertEquals(false, and.evaluate());
+    }
+    
+    @Test
+    public void AndTrueFalse() {
+        Constant constant1 = new Constant(true);
+        Constant constant2 = new Constant(false);
+        BinaryOperation and = new BinaryOperation(constant1, constant2, Operator.get("&&"), new CalculatorEvaluator());
+        assertEquals(false, and.evaluate());
+    }
+    
+    @Test
+    public void AndTrueTrue() {
+        Constant constant1 = new Constant(true);
+        Constant constant2 = new Constant(true);
+        BinaryOperation and = new BinaryOperation(constant1, constant2, Operator.get("&&"), new CalculatorEvaluator());
+        assertEquals(true, and.evaluate());
+    }
+    
+    @Test
+    public void OrFalseFalse() {
+        Constant constant1 = new Constant(false);
+        Constant constant2 = new Constant(false);
+        BinaryOperation or = new BinaryOperation(constant1, constant2, Operator.get("||"), new CalculatorEvaluator());
+        assertEquals(false, or.evaluate());
+    }
+    
+    @Test
+    public void OrFalseTrue() {
+        Constant constant1 = new Constant(false);
+        Constant constant2 = new Constant(true);
+        BinaryOperation or = new BinaryOperation(constant1, constant2, Operator.get("||"), new CalculatorEvaluator());
+        assertEquals(true, or.evaluate());
+    }
+    
+    @Test
+    public void OrTrueFalse() {
+        Constant constant1 = new Constant(true);
+        Constant constant2 = new Constant(false);
+        BinaryOperation or = new BinaryOperation(constant1, constant2, Operator.get("||"), new CalculatorEvaluator());
+        assertEquals(true, or.evaluate());
+    }
+    
+    @Test
+    public void OrTrueTrue() {
+        Constant constant1 = new Constant(true);
+        Constant constant2 = new Constant(true);
+        BinaryOperation or = new BinaryOperation(constant1, constant2, Operator.get("||"), new CalculatorEvaluator());
+        assertEquals(true, or.evaluate());
+    }
+    
+    @Test
+    public void NotTest(){
+        Variable variable1 = new Variable("x",true);
+        UnaryOperation not = new UnaryOperation(variable1, Operator.get("!"),new CalculatorEvaluator());
+        assertEquals(false, not.evaluate());
+        variable1.setValue(false);
+        assertEquals(true, not.evaluate());
+    }
 }

@@ -99,18 +99,22 @@ public class NumberCalculator extends Calculator {
         return o1 / o2;
     }
 
+    @OperatorAnnotation("<")
     public Boolean lessThan(Double o1, Double o2) {
         return o1 < o2;
     }
 
+   @OperatorAnnotation("<")
     public Boolean lessThan(Double o1, Integer o2) {
         return o1 < o2;
     }
 
+   @OperatorAnnotation("<")
     public Boolean lessThan(Integer o1, Double o2) {
         return o1 < o2;
     }
 
+   @OperatorAnnotation("<")
     public Boolean lessThan(Integer o1, Integer o2) {
         return o1 < o2;
     }

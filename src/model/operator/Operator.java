@@ -12,8 +12,12 @@ public class Operator {
         operatorMap= new HashMap<>();
         operatorMap.put("+", new Operator("+",OperatorType.BINARY,PrecedenceType.LOW));
         operatorMap.put("-", new Operator("-",OperatorType.BINARY,PrecedenceType.LOW));
-        operatorMap.put("*", new Operator("*",OperatorType.BINARY,PrecedenceType.LOW));
-        operatorMap.put("/", new Operator("/",OperatorType.BINARY,PrecedenceType.LOW));
+        operatorMap.put("*", new Operator("*",OperatorType.BINARY,PrecedenceType.HIGH));
+        operatorMap.put("/", new Operator("/",OperatorType.BINARY,PrecedenceType.HIGH));
+        operatorMap.put("<", new Operator("<",OperatorType.BINARY,PrecedenceType.LOW));
+        operatorMap.put("&&", new Operator("&&",OperatorType.BINARY,PrecedenceType.LOW));
+        operatorMap.put("||", new Operator("||",OperatorType.BINARY,PrecedenceType.LOW));
+        operatorMap.put("!", new Operator("!",OperatorType.UNARY,PrecedenceType.HIGH));
     }
 
     public Operator(String symbol, OperatorType type, PrecedenceType precedence) {

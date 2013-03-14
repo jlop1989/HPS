@@ -2,17 +2,13 @@ package model.evaluator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.calculator.Calculator;
-import model.calculator.calculators.BooleanCalculator;
 import model.calculator.OperatorAnnotation;
+import model.calculator.calculators.BooleanCalculator;
 import model.calculator.calculators.NumberCalculator;
 import model.operator.Operator;
-import org.reflections.Reflections;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
 public class CalculatorEvaluator implements Evaluator {
 
     @Override
@@ -20,7 +16,7 @@ public class CalculatorEvaluator implements Evaluator {
         if (operator.isBinary()) {
             if (isNumericOperation(args[0], args[1])) {
                 try {
-                    Method method = getMethod(operator, args);
+                    Method method = getMethod(new NumberCalculator(),operator, args);
                     return method.invoke(new NumberCalculator(), args);
                 } catch (IllegalAccessException | IllegalArgumentException 
                         | InvocationTargetException ex) {
@@ -29,7 +25,7 @@ public class CalculatorEvaluator implements Evaluator {
             }
             if (isBooleanOperation(args[0], args[1])) {
                 try {
-                    Method method = getMethod(operator, args);
+                    Method method = getMethod(new BooleanCalculator(),operator, args);
                     return method.invoke(new BooleanCalculator(), args);
                 } catch (IllegalAccessException | IllegalArgumentException 
                         | InvocationTargetException ex) {
@@ -52,28 +48,23 @@ public class CalculatorEvaluator implements Evaluator {
 
     public String getMethodSignature(Method method) {
         String result = method.getAnnotation(OperatorAnnotation.class).value();
-        for (Class<?> type : method.getParameterTypes()) {
+        for (Class<?> type : method.getParameterTypes())
             result += type.getSimpleName();
-        }
         return result;
     }
 
     public String getSignature(Operator operator, Object[] args) {
         String result = operator.getSymbol();
-        for (Object arg : args) {
+        for (Object arg : args) 
             result += arg.getClass().getSimpleName();
-        }
         return result;
     }
 
-    private Method getMethod(Operator operator, Object[] args) {
-        for (Method method : NumberCalculator.class.getMethods()) {
-            if (method.isAnnotationPresent(OperatorAnnotation.class)) {
-                if (getMethodSignature(method).equals(getSignature(operator, args))) {
+    private Method getMethod(Calculator calculator,Operator operator, Object[] args) {
+        for (Method method : calculator.getClass().getMethods()) 
+            if (method.isAnnotationPresent(OperatorAnnotation.class)) 
+                if (getMethodSignature(method).equals(getSignature(operator, args))) 
                     return method;
-                }
-            }
-        }
         return null;
     }
 }

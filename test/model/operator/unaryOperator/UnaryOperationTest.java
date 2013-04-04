@@ -27,11 +27,4 @@ public class UnaryOperationTest {
 //        assertEquals(5.0, root.evaluate().getValue());
 //    }
 //
-//    @Test
-//    public void Not() {
-//        Value<Boolean> val = new Value<>(Boolean.TRUE);
-//        Constant a = new Constant(val);
-//        Token root = new UnaryOperation(a, "not");
-//        assertEquals(Boolean.FALSE, root.evaluate().getValue());
-//    }
 }

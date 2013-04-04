@@ -19,15 +19,7 @@ public class UnaryOperation extends Operation{
 
     @Override
     public Object evaluate() {
-        return null;
-    }
-
-    private boolean isNumericOperation(Object op) {
-        return op instanceof Double || op instanceof Integer;
-    }
-
-    private boolean isBooleanOperation(Object op) {
-        return op instanceof Boolean;
+        return evaluator.evaluate(operator, new Object[]{operand.evaluate()});
     }
 
     @Override

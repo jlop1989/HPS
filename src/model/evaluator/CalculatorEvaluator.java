@@ -13,8 +13,7 @@ public class CalculatorEvaluator implements Evaluator {
 
     @Override
     public Object evaluate(Operator operator, Object[] args) {
-        if (operator.isBinary()) {
-            if (isNumericOperation(args[0], args[1])) {
+            if (isNumericOperation(args)) {
                 try {
                     Method method = getMethod(new NumberCalculator(),operator, args);
                     return method.invoke(new NumberCalculator(), args);
@@ -23,7 +22,7 @@ public class CalculatorEvaluator implements Evaluator {
                     Logger.getLogger(CalculatorEvaluator.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (isBooleanOperation(args[0], args[1])) {
+            if (isBooleanOperation(args)) {
                 try {
                     Method method = getMethod(new BooleanCalculator(),operator, args);
                     return method.invoke(new BooleanCalculator(), args);
@@ -32,20 +31,24 @@ public class CalculatorEvaluator implements Evaluator {
                     Logger.getLogger(CalculatorEvaluator.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
         return null;
 
     }
 
-    private static boolean isNumericOperation(Object o1, Object o2) {
-        return ((o1 instanceof Double || o1 instanceof Integer)
-                && (o2 instanceof Double || o2 instanceof Integer));
+    private static boolean isNumericOperation(Object[] args) {
+        for(Object obj : args)
+            if(!(obj instanceof Double || obj instanceof Integer))
+                return false;
+        return true;
     }
 
-    private static boolean isBooleanOperation(Object o1, Object o2) {
-        return o1 instanceof Boolean && o2 instanceof Boolean;
+    private static boolean isBooleanOperation(Object[] args) {
+       for(Object obj : args)
+            if(!(obj instanceof Boolean))
+                return false;
+        return true;
     }
-
+    
     public String getMethodSignature(Method method) {
         String result = method.getAnnotation(OperatorAnnotation.class).value();
         for (Class<?> type : method.getParameterTypes())

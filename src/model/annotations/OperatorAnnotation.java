@@ -1,4 +1,4 @@
-package model.calculator;
+package model.annotations;
 
 import java.lang.annotation.*;
 

@@ -1,9 +1,8 @@
 package model.calculator.calculators;
 
-import model.calculator.DivisionByZeroException;
-import model.calculator.OperatorAnnotation;
-import java.lang.reflect.Method;
+import model.annotations.OperatorAnnotation;
 import model.calculator.Calculator;
+import model.calculator.DivisionByZeroException;
 
 public class NumberCalculator extends Calculator {
 

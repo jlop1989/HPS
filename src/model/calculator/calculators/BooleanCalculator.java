@@ -1,7 +1,7 @@
 package model.calculator.calculators;
 
+import model.annotations.OperatorAnnotation;
 import model.calculator.Calculator;
-import model.calculator.OperatorAnnotation;
 
 public class BooleanCalculator extends Calculator {
 

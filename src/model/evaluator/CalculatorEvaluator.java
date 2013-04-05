@@ -5,7 +5,8 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.calculator.Calculator;
-import model.calculator.OperatorAnnotation;
+import model.annotations.OperatorAnnotation;
+import model.calculator.CalculatorMethodFinder;
 import model.calculator.calculators.BooleanCalculator;
 import model.calculator.calculators.NumberCalculator;
 import model.operator.Operator;
@@ -13,25 +14,13 @@ public class CalculatorEvaluator implements Evaluator {
 
     @Override
     public Object evaluate(Operator operator, Object[] args) {
-            if (isNumericOperation(args)) {
-                try {
-                    Method method = getMethod(new NumberCalculator(),operator, args);
-                    return method.invoke(new NumberCalculator(), args);
-                } catch (IllegalAccessException | IllegalArgumentException 
-                        | InvocationTargetException ex) {
-                    Logger.getLogger(CalculatorEvaluator.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (isBooleanOperation(args)) {
-                try {
-                    Method method = getMethod(new BooleanCalculator(),operator, args);
-                    return method.invoke(new BooleanCalculator(), args);
-                } catch (IllegalAccessException | IllegalArgumentException 
-                        | InvocationTargetException ex) {
-                    Logger.getLogger(CalculatorEvaluator.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        return null;
+        try {
+            Method m=CalculatorMethodFinder.getMethod(getSignature(operator, args));
+            return m.invoke(m.getDeclaringClass().newInstance(),args);                
+        } catch (IllegalArgumentException | InvocationTargetException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(CalculatorEvaluator.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
 
     }
 

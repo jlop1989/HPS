@@ -117,12 +117,12 @@ public class NumberCalculator extends Calculator {
     public Boolean lessThan(Integer o1, Integer o2) {
         return o1 < o2;
     }
-
+   @OperatorAnnotation("sqrt")
     public Double sqrt(Double o) {
         return Math.sqrt(o);
     }
-
-    public Double sqrt(Integer o) {
-        return Math.sqrt(o);
+   @OperatorAnnotation("sqrt")
+    public Integer sqrt(Integer o) {
+        return (int)Math.sqrt(o);
     }
 }

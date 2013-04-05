@@ -18,6 +18,7 @@ public class Operator {
         operatorMap.put("&&", new Operator("&&",OperatorType.BINARY,PrecedenceType.LOW));
         operatorMap.put("||", new Operator("||",OperatorType.BINARY,PrecedenceType.LOW));
         operatorMap.put("!", new Operator("!",OperatorType.UNARY,PrecedenceType.HIGH));
+        operatorMap.put("sqrt", new Operator("sqrt",OperatorType.UNARY,PrecedenceType.HIGH));
     }
 
     public Operator(String symbol, OperatorType type, PrecedenceType precedence) {

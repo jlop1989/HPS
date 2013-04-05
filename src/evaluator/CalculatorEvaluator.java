@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import calculator.Calculator;
 import annotations.OperatorAnnotation;
 import calculator.CalculatorMethodFinder;
+import calculator.DivisionByZeroException;
 import calculator.calculators.BooleanCalculator;
 import calculator.calculators.NumberCalculator;
 import operator.Operator;
@@ -16,8 +17,12 @@ public class CalculatorEvaluator implements Evaluator {
     public Object evaluate(Operator operator, Object[] args) {
         try {
             Method m=CalculatorMethodFinder.getMethod(getSignature(operator, args));
-            return m.invoke(m.getDeclaringClass().newInstance(),args);                
-        } catch (IllegalArgumentException | InvocationTargetException | InstantiationException | IllegalAccessException ex) {
+            return m.invoke(m.getDeclaringClass().newInstance(),args);   
+        }catch (InvocationTargetException ex){
+            if (ex.getTargetException() instanceof DivisionByZeroException)
+                throw new DivisionByZeroException();
+            return null;
+        } catch (IllegalArgumentException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(CalculatorEvaluator.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }

@@ -1,16 +1,15 @@
 package evaluator;
 
+import annotations.OperatorAnnotation;
+import calculator.Calculator;
+import calculator.CalculatorMethodFinder;
+import calculator.DivisionByZeroException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import calculator.Calculator;
-import annotations.OperatorAnnotation;
-import calculator.CalculatorMethodFinder;
-import calculator.DivisionByZeroException;
-import calculator.calculators.BooleanCalculator;
-import calculator.calculators.NumberCalculator;
 import operator.Operator;
+
 public class CalculatorEvaluator implements Evaluator {
 
     @Override
@@ -29,27 +28,6 @@ public class CalculatorEvaluator implements Evaluator {
 
     }
 
-    private static boolean isNumericOperation(Object[] args) {
-        for(Object obj : args)
-            if(!(obj instanceof Double || obj instanceof Integer))
-                return false;
-        return true;
-    }
-
-    private static boolean isBooleanOperation(Object[] args) {
-       for(Object obj : args)
-            if(!(obj instanceof Boolean))
-                return false;
-        return true;
-    }
-    
-    public String getMethodSignature(Method method) {
-        String result = method.getAnnotation(OperatorAnnotation.class).value();
-        for (Class<?> type : method.getParameterTypes())
-            result += type.getSimpleName();
-        return result;
-    }
-
     public String getSignature(Operator operator, Object[] args) {
         String result = operator.getSymbol();
         for (Object arg : args) 
@@ -57,11 +35,4 @@ public class CalculatorEvaluator implements Evaluator {
         return result;
     }
 
-    private Method getMethod(Calculator calculator,Operator operator, Object[] args) {
-        for (Method method : calculator.getClass().getMethods()) 
-            if (method.isAnnotationPresent(OperatorAnnotation.class)) 
-                if (getMethodSignature(method).equals(getSignature(operator, args))) 
-                    return method;
-        return null;
-    }
 }

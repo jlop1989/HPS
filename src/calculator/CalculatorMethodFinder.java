@@ -1,9 +1,9 @@
 
 package calculator;
 
+import annotations.OperatorAnnotation;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import annotations.OperatorAnnotation;
 import org.reflections.Reflections;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;

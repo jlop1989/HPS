@@ -1,8 +1,7 @@
 package operator.operation;
 
-import model.Token;
 import evaluator.Evaluator;
-import operator.operation.Operation;
+import model.Token;
 import operator.Operator;
 
 public class UnaryOperation extends Operation{

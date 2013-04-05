@@ -1,12 +1,10 @@
 package operator.operation;
 
-import operator.operation.BinaryOperation;
-import model.Constant;
 import evaluator.CalculatorEvaluator;
+import model.Constant;
 import operator.Operator;
-import operator.Operator;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class ToStringTest {
     

@@ -1,9 +1,7 @@
 package operator.operation;
 
-import operator.operation.BinaryOperation;
-import model.Constant;
 import evaluator.CalculatorEvaluator;
-import operator.Operator;
+import model.Constant;
 import operator.Operator;
 import static org.junit.Assert.*;
 import org.junit.Test;

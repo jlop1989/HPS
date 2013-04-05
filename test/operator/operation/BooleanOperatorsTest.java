@@ -1,14 +1,11 @@
 package operator.operation;
 
-import operator.operation.BinaryOperation;
+import evaluator.CalculatorEvaluator;
 import model.Constant;
 import model.Variable;
-import evaluator.CalculatorEvaluator;
 import operator.Operator;
-import operator.Operator;
-import operator.operation.UnaryOperation;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class BooleanOperatorsTest {
 

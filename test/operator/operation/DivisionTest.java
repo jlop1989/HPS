@@ -1,12 +1,11 @@
 package operator.operation;
 
-import model.Constant;
-import model.Token;
 import calculator.DivisionByZeroException;
 import evaluator.CalculatorEvaluator;
+import model.Constant;
 import operator.Operator;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class DivisionTest {
 

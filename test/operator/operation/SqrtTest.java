@@ -3,8 +3,8 @@ package operator.operation;
 import evaluator.CalculatorEvaluator;
 import model.Constant;
 import operator.Operator;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class SqrtTest {
 
